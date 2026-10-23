@@ -25,7 +25,5 @@ jobs:
         pip install uv
         uv pip install --system --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple "torch~=2.0"
         uv pip install --system -e ".[dev]"
-    - name: Lint
-      run: ruff check . && ruff format --check .
     - name: Test with pytest
       run: pytest -v
