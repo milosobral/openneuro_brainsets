@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openneuro_brainsets"
+version = "0.1.0"
+description = "OpenNeuro brainsets (pipelines and datasets) for torch_brain"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "torch_brain>=0.2.1",
+    "numpy>=1.20.0",
+    "pandas>=1.5.3",
+    "h5py>=3.0.0",
+    "mne~=1.11.0",
+    "mne-bids>=0.18",
+    "boto3>=1.41",
+    "requests>=2.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "torch~=2.0",
+    "pytest<9",
+    "pytest-cov",
+    "pre-commit>=3.5.0",
+    "ruff",
+]
+
+[project.urls]
+Homepage = "https://github.com/milosobral/openneuro_brainsets"
+Issues = "https://github.com/milosobral/openneuro_brainsets/issues"
+
+# Exposes the pipelines to torch_brain's `brainsets` CLI as `openneuro:<brainset_id>`.
+[project.entry-points."brainsets.pipelines"]
+openneuro = "openneuro_brainsets.pipelines"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["openneuro_brainsets*"]
+
+[tool.setuptools.package-data]
+"openneuro_brainsets.pipelines" = ["*/pipeline.py", "*/*.md", "*/*.txt"]
+
+[tool.ruff]
+target-version = "py310"
+extend-exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["I", "F", "UP", "B", "E"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
