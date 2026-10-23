@@ -1,0 +1,10 @@
+openneuro_brainsets
+Copyright 2026 The openneuro_brainsets authors
+
+This product includes software originally developed as part of torch_brain
+(https://github.com/neuro-galaxy/torch_brain), Copyright the TorchBrain Team,
+licensed under the Apache License, Version 2.0.
+
+The OpenNeuro pipeline base class, OpenNeuro API helpers, OpenNeuroDataset and the
+klinzing_sleep_ds005555, kochi_visualnaming_ds006914 and shirazi_hbnr1_ds005505
+pipelines were ported from torch_brain at commit e92e8d1.
