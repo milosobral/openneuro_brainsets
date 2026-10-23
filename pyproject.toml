@@ -9,7 +9,7 @@ description = "OpenNeuro brainsets (pipelines and datasets) for torch_brain"
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
-requires-python = ">=3.10"
+requires-python = ">=3.11"  # mne-bids>=0.18 needs Python 3.11+
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
@@ -50,7 +50,7 @@ include = ["openneuro_brainsets*"]
 "openneuro_brainsets.pipelines" = ["*/pipeline.py", "*/*.md", "*/*.txt"]
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 extend-exclude = ["*.ipynb"]
 
 [tool.ruff.lint]
