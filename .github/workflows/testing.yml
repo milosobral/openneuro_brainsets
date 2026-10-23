@@ -1,0 +1,29 @@
+name: Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "**" ]
+
+permissions:
+  contents: read
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        pip install uv
+        uv pip install --system --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple "torch~=2.0"
+        uv pip install --system -e ".[dev]"
+    - name: Test with pytest
+      run: pytest -v
